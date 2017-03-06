@@ -1,0 +1,26 @@
+{
+  "name": "synth",
+  "version": "1.0.0",
+  "description": "JavaScript synth",
+  "main": "webpack.config.js",
+  "scripts": {
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instantaphex/synth.git"
+  },
+  "author": "John Bryan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/instantaphex/synth/issues"
+  },
+  "homepage": "https://github.com/instantaphex/synth#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "moment": "^2.10.6",
+    "webpack": "^1.13.3"
+  }
+}
