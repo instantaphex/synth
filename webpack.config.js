@@ -1,7 +1,7 @@
-var path = require('path');
+let path = require('path');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.ts',
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
@@ -10,8 +10,17 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: path.join(__dirname, 'src'),
-        loader: 'babel-loader'
+      test: /\.ts(x?)$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader?presets[]=es2015!ts-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: [ 'es2015' ]
+        }
       }
     ]
   }

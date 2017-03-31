@@ -1,5 +1,7 @@
 export class MidiMapper {
+  private keyMap: {[asciiVal: number]: number;};
   constructor() {
+    /* key = ascii val = midi */
     this.keyMap = {
       90: 48,
       83: 49,
@@ -17,11 +19,15 @@ export class MidiMapper {
     };
   }
 
-  midiToFrequency (midi, tuning = 440) {
+  public midiToFrequency (midi: number, tuning: number = 440) {
     return Math.pow(2, (midi - 69) / 12) * tuning;
   }
 
-  keyCodeToFrequency (keyCode) {
+  public keyCodeToFrequency (keyCode: number) {
     return this.midiToFrequency(this.keyMap[keyCode]);
+  }
+
+  public keyCodeToMidi (keyCode: number) {
+    return this.keyMap[keyCode];
   }
 }
