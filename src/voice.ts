@@ -1,23 +1,23 @@
+import { Audio } from './audio.ts';
 import { OscillatorType } from './oscillator-type';
 
 export class Voice {
 
   private gainNode: GainNode;
   private osc: OscillatorNode;
+  private context: AudioContext = Audio.getInstance().context;
+  private audio: Audio = Audio.getInstance();
 
-  constructor(private context: AudioContext, private type: OscillatorType) {
-    this.osc = this.context.createOscillator();
-    this.osc.type = this.type;
-
-    this.gainNode = this.context.createGain();
+  constructor(private type: OscillatorType) {
+    this.osc = this.audio.createOscillator(type);
+    this.gainNode = this.audio.createGain();
     this.osc.connect(this.gainNode);
   }
 
-  public play (frequency: number = 440.0, delay: number = 0.04) {
+  public play (frequency: number = 440.0) {
     let now: number = this.context.currentTime;
 
     this.osc.frequency.value = frequency;
-    this.gainNode.connect(this.context.destination);
     this.setToValue(1);
     this.osc.start();
   }
@@ -27,8 +27,8 @@ export class Voice {
     setTimeout(() => this.osc.stop(), 100);
   }
 
-  public connect () {
-    this.gainNode.connect(this.context.destination);
+  public connect (destination: AudioNode) {
+    this.gainNode.connect(destination);
   }
 
   private setToValue (value: number, delay: number = 0.03) {

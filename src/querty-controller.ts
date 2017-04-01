@@ -1,11 +1,13 @@
 import { MidiMapper } from './midi-mapper.ts';
 import { Synth } from './synth.ts';
+import { SoundGenerator } from './sound-generator.ts';
 
-export class Keyboard {
+export class QuertyController {
   private keysHeld: {[key: number]: boolean;} = {};
   private mapper: MidiMapper = new MidiMapper();
+  private soundGenerator: SoundGenerator;
 
-  constructor (private synth: Synth) {
+  constructor () {
     this.listenForKeys();
   }
 
@@ -18,13 +20,17 @@ export class Keyboard {
     if (!this.keysHeld[evt.keyCode]) {
       let midiNote = this.mapper.keyCodeToMidi(evt.keyCode); 
       this.keysHeld[midiNote] = true;
-      this.synth.play(midiNote);
+      this.soundGenerator.play(midiNote);
     }
   }
 
   keyReleased (evt: KeyboardEvent) {
     let midiNote: number = this.mapper.keyCodeToMidi(evt.keyCode); 
     this.keysHeld[midiNote] = false;
-    this.synth.stop(midiNote);
+    this.soundGenerator.stop(midiNote);
+  }
+
+  connect (gen: SoundGenerator): void {
+    this.soundGenerator = gen;
   }
 }

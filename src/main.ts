@@ -1,5 +1,7 @@
+import { Audio } from './audio.ts';
 import { Synth } from './synth.ts';
-import { Keyboard } from './keyboard.ts';
+import { QuertyController } from './querty-controller.ts';
+import { Delay } from './delay.ts';
 
 declare let nx: any;
 declare let matrix1: any;
@@ -7,9 +9,16 @@ declare let select1: any;
 declare let keyboard1: any;
 
 let s: Synth = new Synth();
-let k: Keyboard = new Keyboard(s);
+let querty: QuertyController = new QuertyController();
+let d: Delay = new Delay();
 
-nx.onload = () => {
+querty.connect(s);
+
+s.connect(Audio.getInstance().context.destination);
+s.connect(d.getInput());
+d.connect(Audio.getInstance().context.destination);
+
+/*nx.onload = () => {
   nx.colorize('#00CCFF');
 
   matrix1.sequence(120);
@@ -37,3 +46,4 @@ nx.onload = () => {
   	}
   });
 }
+*/
