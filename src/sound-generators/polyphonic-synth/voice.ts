@@ -1,5 +1,5 @@
-import { Audio } from './audio.ts';
-import { OscillatorType } from './oscillator-type';
+import { Audio } from '../../core/audio.ts';
+import { OscillatorType } from '../../types/oscillator-type.ts';
 
 export class Voice {
 

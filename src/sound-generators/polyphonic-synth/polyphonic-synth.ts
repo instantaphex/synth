@@ -1,10 +1,10 @@
-import { Audio } from './audio.ts';
+import { Audio } from '../../core/audio.ts';
 import { Voice } from './voice.ts';
-import { MidiMapper } from './midi-mapper.ts';
-import { OscillatorType } from './oscillator-type.ts';
-import { Delay } from './delay.ts';
+import { MidiMapper } from '../../utils/midi-mapper.ts';
+import { OscillatorType } from '../../types/oscillator-type.ts';
+import { Delay } from '../../effects/delay.ts';
 
-export class Synth {
+export class PolyphonicSynth {
   
   public context: AudioContext = Audio.getInstance().context;
   public voices: Map<number, Voice> = new Map();

@@ -1,4 +1,4 @@
-import { Audio } from './audio.ts';
+import { Audio } from '../core/audio.ts';
 
 export class Delay {
 	public input: DelayNode;

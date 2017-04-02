@@ -1,8 +1,7 @@
-import { MidiMapper } from './midi-mapper.ts';
-import { Synth } from './synth.ts';
-import { SoundGenerator } from './sound-generator.ts';
+import { MidiMapper } from '../utils/midi-mapper.ts';
+import { SoundGenerator } from '../sound-generators/sound-generator.ts';
 
-export class QuertyController {
+export class QwertyController {
   private keysHeld: {[key: number]: boolean;} = {};
   private mapper: MidiMapper = new MidiMapper();
   private soundGenerator: SoundGenerator;

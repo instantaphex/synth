@@ -7,6 +7,10 @@ module.exports = {
     filename: 'bundle.js'
   },
   devtool: 'inline-source-map',
+  resolve: {
+    root: path.resolve('./src'),
+    extensions: ['', '.ts']
+  },
   module: {
     loaders: [
       {

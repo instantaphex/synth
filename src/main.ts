@@ -1,18 +1,18 @@
-import { Audio } from './audio.ts';
-import { Synth } from './synth.ts';
-import { QuertyController } from './querty-controller.ts';
-import { Delay } from './delay.ts';
+import { Audio } from './core/audio.ts';
+import { PolyphonicSynth } from './sound-generators/polyphonic-synth/polyphonic-synth.ts';
+import { QwertyController } from './midi-controllers/qwerty-controller.ts';
+import { Delay } from './effects/delay.ts';
 
 declare let nx: any;
 declare let matrix1: any;
 declare let select1: any;
 declare let keyboard1: any;
 
-let s: Synth = new Synth();
-let querty: QuertyController = new QuertyController();
+let s: PolyphonicSynth = new PolyphonicSynth();
+let qwerty: QwertyController = new QwertyController();
 let d: Delay = new Delay();
 
-querty.connect(s);
+qwerty.connect(s);
 
 s.connect(Audio.getInstance().context.destination);
 s.connect(d.getInput());

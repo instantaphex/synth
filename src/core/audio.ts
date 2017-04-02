@@ -1,4 +1,4 @@
-import { OscillatorType } from './oscillator-type.ts';
+import { OscillatorType } from '../types/oscillator-type.ts';
 
 export class Audio {
     private static instance: Audio = new Audio();
