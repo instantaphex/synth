@@ -27,8 +27,9 @@ export class Voice {
     setTimeout(() => this.osc.stop(), 100);
   }
 
-  public connect (destination: AudioNode) {
-    this.gainNode.connect(destination);
+  public connect (node: AudioNode) {
+    this.gainNode.connect(node);
+    return node;
   }
 
   private setToValue (value: number, delay: number = 0.03) {

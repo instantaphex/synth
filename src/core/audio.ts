@@ -20,13 +20,14 @@ export class Audio {
     }
 
     public createGain(): GainNode {
-        return this.context.createGain();
+        return Audio.getInstance().context.createGain();
     }
 
     public createOscillator(type: OscillatorType): OscillatorNode {
-        let osc = this.context.createOscillator();
+        let osc = Audio.getInstance().context.createOscillator();
         osc.type = type;
         return osc;
     }
+
 }
 

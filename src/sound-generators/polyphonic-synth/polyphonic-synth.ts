@@ -2,9 +2,9 @@ import { Audio } from '../../core/audio.ts';
 import { Voice } from './voice.ts';
 import { MidiMapper } from '../../utils/midi-mapper.ts';
 import { OscillatorType } from '../../types/oscillator-type.ts';
-import { Delay } from '../../effects/delay.ts';
+import { SoundGenerator } from '../sound-generator.ts';
 
-export class PolyphonicSynth {
+export class PolyphonicSynth implements SoundGenerator {
   
   public context: AudioContext = Audio.getInstance().context;
   public voices: Map<number, Voice> = new Map();
@@ -38,8 +38,13 @@ export class PolyphonicSynth {
     }
   }
 
-  public connect (destination: AudioNode) {
-    this.output.connect(destination);
+  public connect (node: AudioNode): AudioNode {
+    this.output.connect(node);
+    return node;
+  }
+
+  public disconnect(): void {
+    this.output.disconnect();
   }
 }
 

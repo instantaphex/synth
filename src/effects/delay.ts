@@ -1,6 +1,7 @@
 import { Audio } from '../core/audio.ts';
+import { AudioEffect } from './audio-effect.ts';
 
-export class Delay {
+export class Delay implements AudioEffect {
 	public input: DelayNode;
 	public feedback: GainNode;
 
@@ -16,12 +17,17 @@ export class Delay {
 	    this.createFeedbackLoop();
 	}
 
-	getInput(): AudioNode {
+	public getInput(): AudioNode {
 		return this.input;
 	}
 
-	connect(node: AudioNode): void {
+	public connect(node: AudioNode): AudioNode {
 	    this.input.connect(node);
+	    return node;
+	}
+
+	public disconnect(): void {
+		this.input.disconnect();
 	}
 
 	private createFeedbackLoop (): void {

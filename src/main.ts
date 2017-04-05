@@ -1,22 +1,19 @@
 import { Audio } from './core/audio.ts';
-import { PolyphonicSynth } from './sound-generators/polyphonic-synth/polyphonic-synth.ts';
-import { QwertyController } from './midi-controllers/qwerty-controller.ts';
-import { Delay } from './effects/delay.ts';
+import { TestSynth } from './instruments/test-synth.ts';
+import { BufferStore } from './core/buffer-store.ts';
+let responses = new BufferStore();
+let synth = new TestSynth();
 
-declare let nx: any;
+responses.addBuffers({hall: '/assets/impulse-responses/irHall.ogg'}).then(() => {
+  synth.connect(Audio.getInstance().context.destination);
+});
+
+
+
+/* declare let nx: any;
 declare let matrix1: any;
 declare let select1: any;
-declare let keyboard1: any;
-
-let s: PolyphonicSynth = new PolyphonicSynth();
-let qwerty: QwertyController = new QwertyController();
-let d: Delay = new Delay();
-
-qwerty.connect(s);
-
-s.connect(Audio.getInstance().context.destination);
-s.connect(d.getInput());
-d.connect(Audio.getInstance().context.destination);
+declare let keyboard1: any; */
 
 /*nx.onload = () => {
   nx.colorize('#00CCFF');

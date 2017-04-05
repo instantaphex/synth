@@ -7,9 +7,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   devtool: 'inline-source-map',
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.ts']
+  devServer: {
+    contentBase: path.join(__dirname),
+    watchContentBase: true,
+    compress: true,
+    port: 9000
   },
   module: {
     loaders: [

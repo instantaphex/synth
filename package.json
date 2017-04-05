@@ -4,7 +4,7 @@
   "description": "JavaScript synth",
   "main": "webpack.config.js",
   "scripts": {
-    "watch": "webpack --watch"
+    "serve": "webpack && webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "moment": "^2.10.6",
-    "webpack": "^1.13.3"
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "nexusui": "^1.2.0"
